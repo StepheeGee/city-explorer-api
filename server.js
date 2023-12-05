@@ -10,7 +10,7 @@ app.use(cors());
 const PORT = process.env.PORT || 5173;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
-const weatherData = require('./weather.json');
+const weatherData = require('./data/weather.json');
 
 const cities = [
   { name: 'Seattle', lat: '47.6062', lon: '-122.3321' },
