@@ -28,7 +28,7 @@ class Forecast {
 app.get('/weather', (req, res) => {
   const { lat, lon, searchQuery } = req.query;
 
- 
+
   if (lat && lon) {
     const cityWeather = weatherData.find(
       (city) => city.lat === lat && city.lon === lon
@@ -41,7 +41,7 @@ app.get('/weather', (req, res) => {
     }
   }
 
-  
+
   else if (searchQuery) {
     const cityName = searchQuery.toLowerCase();
     const cityWeather = weatherData.find(
@@ -55,7 +55,7 @@ app.get('/weather', (req, res) => {
     }
   }
 
-  
+
   else {
     res.json(weatherData);
   }
