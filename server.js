@@ -17,6 +17,10 @@ class Forecast {
     this.description = description;
   }
 }
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 
 app.get('/weather', (req, res) => {
   try {
@@ -50,6 +54,11 @@ app.get('/weather', (req, res) => {
     console.error('Error:', error.message);
     res.status(500).send('Server Error');
   }
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Oh Shit...Something broke!');
 });
 
 app.listen(PORT, () => {
