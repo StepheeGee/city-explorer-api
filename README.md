@@ -1,6 +1,6 @@
 # City-Explorer-API Lab
 
-[Repo Link](https://github.com/StepheeGee/city-explorer/pull/2)
+[Repo Link](https://github.com/StepheeGee/city-explorer-api/pull/1)
 
 [Deployed Link](https://endearing-lollipop-2dc400.netlify.app/)
 
