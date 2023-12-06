@@ -12,51 +12,53 @@ app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 const weatherData = require('./data/weather.json');
 
-const cities = [
-  { name: 'Seattle', lat: '47.6062', lon: '-122.3321' },
-  { name: 'Paris', lat: '48.8566', lon: '2.3522' },
-  { name: 'Amman', lat: '31.9454', lon: '35.9284' },
-];
-
 class Forecast {
   constructor(date, description) {
     this.date = date;
     this.description = description;
   }
 }
-
 app.get('/weather', (req, res) => {
-  const { lat, lon, searchQuery } = req.query;
+  try {
+    const { lat, lon, searchQuery } = req.query;
 
- 
-  if (lat && lon) {
-    const cityWeather = weatherData.find(
-      (city) => city.lat === lat && city.lon === lon
+    let cityWeather;
+
+    if (lat && lon) {
+      
+      cityWeather = weatherData.find(
+        (city) => city.lat === lat && city.lon === lon
+      );
+    } else if (searchQuery) {
+      
+      const cityName = searchQuery.toLowerCase();
+     
+      cityWeather = weatherData.find(
+        (city) => city.name.toLowerCase() === cityName
+      );
+    } else {
+      
+      return res.status(400).json({ error: 'Invalid parameters' });
+    }
+
+    if (!cityWeather) {
+      
+      return res.status(404).json({ error: 'Weather data not found' });
+    }
+
+   
+    const forecasts = cityWeather.data.map(
+      (day) => new Forecast(day.datetime, day.weather.description)
     );
 
-    if (cityWeather) {
-      res.json(cityWeather.data.map((day) => new Forecast(day.datetime, day.weather.description)));
-    } else {
-      res.status(404).json({ error: 'Weather data not found for the provided coordinates' });
-    }
+    
+    res.json(forecasts);
+  } catch (error) {
+    console.error('Error:', error.message);
+    res.status(500).send('Server Error');
   }
+});
 
-  
-  else if (searchQuery) {
-    const cityName = searchQuery.toLowerCase();
-    const cityWeather = weatherData.find(
-      (city) => city.city_name.toLowerCase() === cityName
-    );
-
-    if (cityWeather) {
-      res.json(cityWeather.data.map((day) => new Forecast(day.datetime, day.weather.description)));
-    } else {
-      res.status(404).json({ error: 'Weather data not found for the provided city' });
-    }
-  }
-
-  
-  else {
-    res.json(weatherData);
-  }
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
