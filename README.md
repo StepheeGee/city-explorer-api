@@ -42,7 +42,7 @@ Fixed handling of errors when fetching location data.
 Enhanced UI feedback for error messages or loading indicators during API requests.
 Added more specific error handling and messages for failed API requests.
 
-12-06-2023 3pm - 
+12-06-2023 5:30pm 
 Version: 1.1.0
 Endpoints Communicate
 Data is fetched from JSON
@@ -59,4 +59,4 @@ I didn't do a careful job of logging this yesterday and today. I can say that I 
 
 ## Lighthouse
 
-[Lab 07](Lighthouse2.png)
+![Lab 07](Lighthouse2.png)
