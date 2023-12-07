@@ -8,15 +8,14 @@ const app = express();
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 const weatherData = require('./data/weather.json');
 
-const cities = [
-  { name: 'Seattle', lat: '47.6038321', lon: '-122.330062' },
-  { name: 'Paris', lat: '48.86', lon: '2.35' },
-  { name: 'Amman', lat: '31.95', lon: '35.91' },
-];
+
+
 
 class Forecast {
   constructor(date, description) {
@@ -25,38 +24,38 @@ class Forecast {
   }
 }
 
-app.get('/weather', (req, res) => {
+app.get('/weather', async (req, res) => {
   const { lat, lon, searchQuery } = req.query;
 
 
-  if (lat && lon) {
-    const cityWeather = weatherData.find(
-      (city) => city.lat === lat && city.lon === lon
-    );
+  if ((lat && lon) || searchQuery) {
+    try {
+      let weatherResponse;
+      let apiWeatherUrl;
 
-    if (cityWeather) {
-      res.json(cityWeather.data.map((day) => new Forecast(day.datetime, day.weather.description)));
-    } else {
-      res.status(404).json({ error: 'Weather data not found for the provided coordinates' });
+      if (lat && lon) {
+        apiWeatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${WEATHER_API_KEY}`;
+      } else {
+        apiWeatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?city=${searchQuery}&key=${WEATHER_API_KEY}`;
+      }
+
+      weatherResponse = await axios.get(apiWeatherUrl);
+
+      if (weatherResponse && weatherResponse.data && weatherResponse.data.data) {
+        const forecasts = weatherResponse.data.data.map((day) => {
+          const description = `Low of ${day.low_temp}, high of ${day.high_temp} with ${day.weather.description}`;
+          return { date: day.datetime, description: description };
+        });
+
+        res.json(forecasts);
+      } else {
+        res.status(404).json({ error: `We can't find your weather report. Prepare for the worst.` });
+      }
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      res.status(500).json({ error: 'Failed to fetch weather data' });
     }
-  }
-
-
-  else if (searchQuery) {
-    const cityName = searchQuery.toLowerCase();
-    const cityWeather = weatherData.find(
-      (city) => city.city_name.toLowerCase() === cityName
-    );
-
-    if (cityWeather) {
-      res.json(cityWeather.data.map((day) => new Forecast(day.datetime, day.weather.description)));
-    } else {
-      res.status(404).json({ error: 'Weather data not found for the provided city' });
-    }
-  }
-
-
-  else {
+  } else {
     res.json(weatherData);
   }
 });
