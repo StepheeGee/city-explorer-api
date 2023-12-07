@@ -24,9 +24,11 @@ The problem domain for this assignment involves building a React application tha
 TBD
 
 
-## Server Cycle Diagram
+## Server Cycle Diagrams
 
-[Here](cycle.sql)
+[LocationAPI](cycle.sql)
+![WeatherAPI](datachart.png)
+[WrittenFlowforWeatherAPI](datachart.md)
 
 ## Change Log
 
@@ -48,6 +50,13 @@ Endpoints Communicate
 Data is fetched from JSON
 Deployed with Render and Netlify
 
+12-06-2023 11:30pm
+Version: 1.2.0
+Deprecated the path to the JSON
+Added the Weather Bit API and changed the logic 
+Tested front and backend to ensure functionality
+
+
 
 ## Credit and Collaborations
 
@@ -56,6 +65,10 @@ Thank you soooooo much Brandon (TA)
 ## Time Estimates
 
 I didn't do a careful job of logging this yesterday and today. I can say that I thought I would complete the lab before the deadline, and I didn't. But after spending a lot of time with TA Brandon, and being the code review example in class, my lab is complete. It took me 9 hours on 12.5.23 and 4 hours today, 12.6.23.
+
+Lab 6. 12.4.23 - Front End only. Separate Repo
+Lab 7. 12.5.23 - 3 Features - 10 plus hours
+Lab 8. 12.6.23 - 3 Features - 5 hours and still working
 
 ## Lighthouse
 
