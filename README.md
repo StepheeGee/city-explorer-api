@@ -4,6 +4,8 @@
 
 [Deployed Link](https://endearing-lollipop-2dc400.netlify.app/)
 
+[Trello Board](https://trello.com/invite/b/HvmnsiVm/ATTIaacc9ea936288de79440dc109fe256ff93E2B6CC/module-2-city-explorer)
+
 **Author**: Stephanie G. Johnson
 **Version**: 1.1.1
 
@@ -72,4 +74,7 @@ Lab 8. 12.6.23 - 3 Features - 5 hours and still working
 
 ## Lighthouse
 
-![Lab 07](Lighthouse2.png)
+Tuesday -
+![Lab07](lighthouse2.png)
+Wednesday -
+![Lab08](lighthouse3.png)
