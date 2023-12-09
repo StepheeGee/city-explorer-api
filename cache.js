@@ -1,3 +1,4 @@
 const weatherCache = {};
+const movieCache = {};
 
-module.exports = weatherCache;
+module.exports = { weatherCache, movieCache };

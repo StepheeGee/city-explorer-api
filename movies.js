@@ -1,9 +1,18 @@
 const axios = require('axios');
 const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
+const movieCache = require('./cache');
 
 class MovieFetcher {
   static async fetchMoviesByCity(city) {
     try {
+      const cacheKey = `movies-${city}`;
+
+      
+      if (movieCache[cacheKey] && Date.now() - movieCache[cacheKey].timestamp < 60000) {
+        console.log('Cache hit for movies in:', city);
+        return movieCache[cacheKey].data;
+      }
+
       const movieURL = "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1";
 
       if (!city) {
@@ -28,6 +37,13 @@ class MovieFetcher {
           popularity: movie.popularity,
           released_on: movie.release_date,
         }));
+
+        
+        movieCache[cacheKey] = {
+          timestamp: Date.now(),
+          data: movies,
+        };
+
         return movies;
       } else {
         throw new Error(`No movies found for '${city}'`);
