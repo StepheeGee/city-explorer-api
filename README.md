@@ -7,7 +7,7 @@
 [Trello Board](https://trello.com/invite/b/HvmnsiVm/ATTIaacc9ea936288de79440dc109fe256ff93E2B6CC/module-2-city-explorer)
 
 **Author**: Stephanie G. Johnson
-**Version**: 1.3.0
+**Version**: 1.3.1
 
 
 
@@ -22,10 +22,6 @@ The City Explorer web application is a React-based platform that leverages Axios
 3. **Weather Forecast**: Displaying weather forecasts based on geographic coordinates obtained from the Location IQ API. This involves integrating the Weather Bit API to retrieve and exhibit weather-related data for the chosen location.
 
 4. **Movie Information**: Utilizing a movie API to gather and showcase details about movies related to the selected city.
-
-## Getting Started
-
-TBD
 
 ## Architecture
 
@@ -136,16 +132,22 @@ This backend setup ensures that the frontend application interacts seamlessly wi
 - Code refactoring.
 - Added styling using CSS and Bootstrap.
 
+**12-08-2023 9:19pm - Version: 1.3.1**
+-Added cache logic to server for weather and movie modules
 
 ## Credit and Collaborations
 
-Thank you Brandon (TA)
+Thank you, Brandon!! (TA)
 
 ## Time Estimates
 
 Lab 7. 12.5.23 - 3 Features - 10 plus hours
+
 Lab 8. 12.6.23 - 3 Features - 11 hours 
+
 Lab 9. 12.7.23 - Refactoring - 9 hours
+
+Lab 10. 12.8.23 - Cache - 3 hours
 
 ## Lighthouse
 
@@ -153,4 +155,81 @@ Tuesday -
 ![Lab07](lighthouse2.png)
 Wednesday -
 ![Lab08](lighthouse3.png)
+Thursday-
 ![Lab09](lighthouse4.png)
+Friday - 
+![Lab10]-(lighthouse5.png)
+
+## Getting Started
+
+Follow these steps to get the project up and running on your local machine.
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org) - JavaScript runtime
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) - Package manager
+
+### Installation
+
+1. Clone the front and backend repositories:
+
+    ```bash
+    git clone https://github.com/StepheeGee/city-explorer.git
+   
+    ```
+
+   ```bash
+    git clone  https://github.com/StepheeGee/city-explorer-api.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd your-project
+    ```
+
+3. Install dependencies:
+
+    If using npm:
+
+    ```bash
+    npm install
+    ```
+
+    If using Yarn:
+
+    ```bash
+    yarn install
+    ```
+
+### Usage
+
+To start the development server:
+
+```bash
+npm start
+# or
+yarn start
+```
+
+This will launch the project on `http://localhost:3000`.
+
+### Configuration
+
+Some parts of the project might require additional configuration. Modify the `config.js` or `.env` file accordingly.
+
+### Tests
+
+Run tests using:
+
+```bash
+npm test
+# or
+yarn test
+```
+
+### Deployment
+
+To deploy the project, follow the deployment guidelines or use the provided deployment scripts.
