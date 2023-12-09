@@ -139,7 +139,7 @@ This backend setup ensures that the frontend application interacts seamlessly wi
 
 ## Credit and Collaborations
 
-Thank you Brandon (TA)
+Thank you, Brandon!! (TA)
 
 ## Time Estimates
 
